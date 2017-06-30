@@ -22,9 +22,9 @@ On the first start the database is empty. Initialize the SQLAlchemy models from 
 docker-compose run flask-gunicorn project/scripts/init_db.sh
 ```
 
-Browse to [localhost](http://localhost).
+Browse to [localhost](http://localhost). You should see a well-known poem delivered from the database backend.
 
-Start hacking in project.
+Start hacking in [/project](project/).
 
 When done, take down containers with
 ```
