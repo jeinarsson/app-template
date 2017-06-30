@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="icon" type="image/png" href="/static/images/favicon.png" sizes="16x16">
+<title>Project</title>
+<style>
+p {
+	text-align: center;
+	font-size: 16px;
+	line-height: 1.4rem;
+	margin-bottom:30px;
+}
+p > span {
+	font-style: italic;
+}
+</style>
+</head>
+<body>
+{% for poem in poems %}
+<p>
+{% for line in poem.lines %}
+{{ line.text }}<br/>
+{% endfor %}
+<span>- {{ poem.author }}</span>
+</p>
+{% endfor %}
+</body>
+</html>

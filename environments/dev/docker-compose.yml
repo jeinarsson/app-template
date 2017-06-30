@@ -1,0 +1,38 @@
+version: "3.3"
+
+volumes:
+  db-data:
+
+services:
+  flask-gunicorn:
+    build: 
+      context: ../.. 
+      dockerfile: environments/dev/flask-gunicorn/Dockerfile
+    command: /usr/local/bin/gunicorn -w 2 -b :8000 --max-requests 1 --reload project.www:app
+    environment:
+      - SECRET_KEY==4ay95k7zib1a42@v28ni4v9vf$$4b85+=jft8!29&#xdd#cp&=
+      - CSRF_SESSION_KEY==4ay95k7zib1a42@v28ni4v9vf$$4b85+=jft8!29&#xdd#cp&=
+      - DATABASE_URL=postgresql://dbuser:dbpassword@db/projectdb
+    volumes:
+      - ../../project:/src/project
+    ports: 
+      - "8000:8000"
+    depends_on:
+      - db
+
+  nginx:
+    build: ./nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ../../project/www/static:/www/static
+    depends_on:
+      - flask-gunicorn
+
+  db:
+    build: ./postgres
+    ports: 
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
