@@ -13,8 +13,9 @@ Assuming you have [Docker](https://store.docker.com/search?type=edition&offering
 Start development environment:
 ```
 cd environments/dev
-docker-compose up
+docker-compose up -d
 ```
+(`-d` means run in background, if you omit it start a new terminal for the following.)
 
 On the first start the database is empty. Initialize the SQLAlchemy models from the app server by
 ```
