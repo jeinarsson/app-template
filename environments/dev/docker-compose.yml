@@ -1,4 +1,4 @@
-version: "3.3"
+version: "3"
 
 volumes:
   db-data:
@@ -30,7 +30,11 @@ services:
       - flask-gunicorn
 
   db:
-    build: ./postgres
+    image: postgres
+    environment:
+      - POSTGRES_USER=dbuser
+      - POSGRES_PASSWORD=dbpassword
+      - POSTGRES_DB=projectdb
     ports: 
       - "5432:5432"
     volumes:

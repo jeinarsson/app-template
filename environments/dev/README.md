@@ -47,6 +47,8 @@ Postgres image with one db called 'projectdb', and one user 'dbuser' with passwo
 
 /var/lib/postgresql/data is bound to the docker volume db-data for persistence.
 
+Exposes port 5432 (default port for psql) to host - you may need to change this if you are already running a postgres locally.
+
 See
 ```
 docker volume ls
